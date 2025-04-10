@@ -899,6 +899,15 @@ void ReceiveStatisticsProxy::OnDecodedFrame(
     first_decoded_frame_time_ms_.emplace(frame_meta.decode_timestamp.ms());
   }
   last_decoded_frame_time_ms_.emplace(frame_meta.decode_timestamp.ms());
+
+  int64_t now_ms = clock_->TimeInMilliseconds();
+  absl::optional<double> fps = decode_fps_estimator_.Rate(now_ms);
+  if (fps.has_value()) {
+      RTC_LOG(LS_INFO) << "[AmmuDebugHehe] Estimated Decoded FPS: " << *fps << " at time: " << clock_->TimeInMilliseconds() << " ms";
+  } else {
+      RTC_LOG(LS_INFO) << "[AmmuDebugHehe] Estimated Decoded FPS: N/A" << " at time: " << clock_->TimeInMilliseconds() << " ms";
+  }
+  
 }
 
 void ReceiveStatisticsProxy::OnRenderedFrame(
