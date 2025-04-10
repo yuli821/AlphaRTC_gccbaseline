@@ -947,7 +947,7 @@ void ReceiveStatisticsProxy::OnRenderedFrame(
     if (delay_ms >= 0) {
       content_specific_stats->e2e_delay_counter.Add(delay_ms);
 
-      RTC_LOG(INFO) << "E2E FRAME DELAY: " << delay_ms;
+      RTC_LOG(INFO) << "E2E FRAME DELAY: " << delay_ms << " at time: " << clock_->TimeInMilliseconds() << "ms";
     }
   }
 
