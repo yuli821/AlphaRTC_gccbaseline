@@ -499,6 +499,9 @@ EncodedImageCallback::Result RtpVideoSender::OnEncodedImage(
     const RTPFragmentationHeader* fragmentation) {
   fec_controller_->UpdateWithEncodedData(encoded_image.size(),
                                          encoded_image._frameType);
+
+  RTC_LOG(LS_INFO) << "Encoded frame size: " << encoded_image.size() << " bytes";
+  
   rtc::CritScope lock(&crit_);
   RTC_DCHECK(!rtp_streams_.empty());
   if (!active_)
