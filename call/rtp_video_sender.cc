@@ -500,7 +500,7 @@ EncodedImageCallback::Result RtpVideoSender::OnEncodedImage(
   fec_controller_->UpdateWithEncodedData(encoded_image.size(),
                                          encoded_image._frameType);
 
-  Clock* clock = Clock::GetRealTimeClock();                                        
+  // Clock* clock = Clock::GetRealTimeClock();                                        
   RTC_LOG(LS_INFO) << "Encoded frame size: " << encoded_image.size() << " bytes at time: " << encoded_image.Timestamp() / 90 << " ms";
 
   rtc::CritScope lock(&crit_);
