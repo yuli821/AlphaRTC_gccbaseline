@@ -990,8 +990,8 @@ void ReceiveStatisticsProxy::OnCompleteFrame(bool is_keyframe,
     ++stats_.frame_counts.delta_frames;
   }
 
-  RTC_LOG(LS_INFO) << "[ReceivedBps] total_media_bytes: " << size_bytes << " bytes";
-  
+  RTC_LOG(LS_INFO) << "[ReceivedBps] total_media_bytes: " << size_bytes << " bytes at time: " clock_->TimeInMilliseconds() << " ms";
+
   // Content type extension is set only for keyframes and should be propagated
   // for all the following delta frames. Here we may receive frames out of order
   // and miscategorise some delta frames near the layer switch.
